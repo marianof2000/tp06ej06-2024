@@ -176,7 +176,7 @@ def opcion_a(pisos, habitaciones):
     ocupadas = []
     piso_hab = []
     try:
-        with open("huespedes2.csv", "rt", encoding="utf-8") as f:
+        with open("huespedes.csv", "rt", encoding="utf-8") as f:
             pasajeros = [linea.strip().split(",") for linea in f.readlines()[1:]]
     except Exception as e:
         print(f"Error: {e}")
