@@ -191,7 +191,6 @@ def opcion_a(pisos, habitaciones):
                     piso_hab.append((piso, habitacion))
                     break
             ocupadas.append(((piso, habitacion), tuple(p)))
-    # print(tabulate(sorted(ocupadas, key=lambda x: x[0][0]), tablefmt="grid"))
     # Genera esta estructura
     # [((piso, habitacion), (dni, ape_nom, f_ingreso, f_egreso, cant_ocupantes)), ...]
     return ocupadas
@@ -215,8 +214,10 @@ def opcion_b(hotel, pisos):
     total = [
         sum([1 for hab, pasajero in hotel if hab[0] == p]) for p in range(1, pisos + 1)
     ]
+    maximo = max(total)
+    ocupadas = total.index(maximo) + 1
     print(
-        f"El piso con mayor cantidad de habitaciones ocupadas es el {total.index(max(total)) + 1} con {max(total)} habitaciones"
+        f"El piso con mayor cantidad de habitaciones ocupadas es el {ocupadas} con {maximo} habitaciones"
     )
 
 
@@ -259,8 +260,10 @@ def opcion_d(hotel, pisos):
         sum([int(pasajero[4]) for hab, pasajero in hotel if hab[0] == p])
         for p in range(1, pisos + 1)
     ]
+    maximo = max(mayor_cantidad)
+    piso = mayor_cantidad.index(maximo) + 1
     print(
-        f"El piso con mayor cantidad de personas es el {mayor_cantidad.index(max(mayor_cantidad)) + 1} con {max(mayor_cantidad)} personas"
+        f"El piso con mayor cantidad de personas es el {piso} con {maximo} personas"
     )
 
 
@@ -355,7 +358,7 @@ def main():
     pisos = 10
     habitaciones = 6
     limpiar_consola()
-    # registrar_ingresos()
+    registrar_ingresos()
     pausa = input("\nPresione Enter para continuar...")
     # Nota: se debería usar un dict de funciones (tema de otra materia)
     hotel = opcion_a(pisos, habitaciones)
